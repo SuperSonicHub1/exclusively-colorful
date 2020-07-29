@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{post.title}}{% endblock %}
+{% block content %}
+
+{% if post.image %}
+<img src="data:image/png;base64, {{post.image}}." class="img-fluid" alt="Responsive image">
+{% endif %}
+<h1>{{post.title}}</h1>
+<p>{{post.description}}</p>
+<p class="text-muted">{{post.school}}</p>
+
+{% endblock %}
