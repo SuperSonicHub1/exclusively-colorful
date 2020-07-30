@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}{% endblock %} - Team 1</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="static/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- Font Awesome -->
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
@@ -24,16 +24,20 @@
           <li class="nav-item {{ "active" if path=="/" }}">
             <a class="nav-link" href="/">Home{% if path=="/" %}<span class="sr-only">(current)</span>{% endif %}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+          <li class="nav-item {{ "active" if 'activism' in path }}">
+            <a class="nav-link" href="/activism">Activism{% if 'activism' in path %}<span class="sr-only">(current)</span>{% endif %}</a>
+          </li>
+          <li class="nav-item {{ "active" if 'casual' in path }}">
+            <a class="nav-link" href="/casual">Casual Discussion{% if 'casual' in path %}<span class="sr-only">(current)</span>{% endif %}</a>
           </li>
         </ul>
-        <a class="btn btn-primary " href="/create" role="button"><i class="fa fa-plus mr-sm-2" aria-hidden="true"></i>Create</a>
+        {% block button %}{% endblock %}
       </div>
     </nav>
     <br>
     {% endblock %}
     <div class='container' id="content">{% block content %}{% endblock %}</div>
+    <br>
     <footer class="mt-auto py-3" style="background-color: #f5f5f5; text-align: center;">
       <div class="container">
         <span class="text-muted"><a href="">Terms of Service</a>	● <a href="">Privacy Policy</a>	● <a href="">About Us</a>	● <a href="">Contact</a>	● © Team 1 2020</span>

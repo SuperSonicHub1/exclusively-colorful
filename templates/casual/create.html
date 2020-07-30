@@ -1,6 +1,6 @@
-{% extends "base.html" %} {% block title %}Create Post{% endblock %} {% block content %}
+{% extends "casual/base.html" %} {% block title %}Create Post{% endblock %} {% block content %}
 
-<form method="POST" action="/render" enctype='multipart/form-data'>
+<form method="POST" action="/casual/render" enctype='multipart/form-data'>
 
 	<div class="form-group">
 		<label for="title">Title</label>
@@ -17,9 +17,15 @@
     <textarea class="form-control" name="description" required></textarea>
   </div>
 
-  <div class="form-group">
-    <label for="title">School</label>
-    <input type="text" class="form-control" name="school">
+   <div class="form-group">
+     <label for="school">School</label>
+     <select class="form-control" name="school">
+       <option value="None" selected>None</option>
+       <option value="Other">Other</option>  
+       {% for name in schools.boarding %}
+       <option value="{{name}}">{{name}}</option>
+       {% endfor %}
+     </select>
   </div>
 
   <div class="custom-control custom-checkbox mb-3">

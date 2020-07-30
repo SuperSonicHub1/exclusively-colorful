@@ -1,0 +1,9 @@
+- Create new index page [Emannuel]
+- ~~reorganize templates folder~~
+- ~~remake database design~~
+- Create casual section
+    - Different topics to talk
+    - Each page is a separate topic for sake of pagination
+- Actually do pagination!
+- About Us page
+- ~~Only have create drop-down display boarding schools!~~
