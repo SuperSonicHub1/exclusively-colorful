@@ -3,12 +3,12 @@
 {% block content %}
 <div class="text-center">
     {% if post.image %}
-    <img src="data:image/png;base64,{{post.image}}" class="img-thumbnail" style="max-height=50%" alt="Post image">
+    <img src="data:image/{{post.image_format}};base64,{{post.image}}" class="img-thumbnail" style="max-height=50%" alt="Post image">
     {% endif %}
     <h1>{{post.title}}</h1>
     <p>{{post.description}}</p>
     <p class="text-muted">
-        <i class="fa fa-school mr-sm-2" aria-hidden="true"></i>{{post.school}} | <i class="fa fa-clock mr-sm-2" aria-hidden="true"></i>{{post.time}}
+        <i class="fa fa-school mr-sm-2" aria-hidden="true"></i>{{post.school}} | <i class="fa fa-clock mr-sm-2" aria-hidden="true"></i>{{post.time.strftime("%a %b %d, %Y, %H:%M UTC")}} | <i class="far fa-clipboard mr-sm-2"></i>{{post.topic}}
     </p>
 </div>
 {% endblock %}

@@ -10,5 +10,9 @@ def validate_image(stream):
   return '.' + (format if format != 'jpeg' else 'jpg')
 
 def schools():
-  with open("names.json")as f:
+  with open("utils/names.json")as f:
+    return json.load(f)
+
+def topics():
+  with open("utils/topics.json")as f:
     return json.load(f)

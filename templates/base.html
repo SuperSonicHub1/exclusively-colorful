@@ -1,25 +1,25 @@
 <!doctype html>
 <html lang="en" class='h-100'>
   <head>
-    <!-- Required meta tags -->
+        <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}{% endblock %} - Team 1</title>
+    <title>{% block title %}{% endblock %} - Exclusively Colorful</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- Font Awesome -->
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
-  <body class='d-flex flex-column h-100'>
+  <body class='d-flex flex-column h-100' style="background-color:PaleTurquoise;">
     {% block body %}
     {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Team 1</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+      <a class="navbar-brand" href="/">Exclusively Colorful</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
         <ul class="navbar-nav mr-auto">
           <li class="nav-item {{ "active" if path=="/" }}">
             <a class="nav-link" href="/">Home{% if path=="/" %}<span class="sr-only">(current)</span>{% endif %}</a>
@@ -27,8 +27,17 @@
           <li class="nav-item {{ "active" if 'activism' in path }}">
             <a class="nav-link" href="/activism">Activism{% if 'activism' in path %}<span class="sr-only">(current)</span>{% endif %}</a>
           </li>
-          <li class="nav-item {{ "active" if 'casual' in path }}">
-            <a class="nav-link" href="/casual">Casual Discussion{% if 'casual' in path %}<span class="sr-only">(current)</span>{% endif %}</a>
+          <li class="nav-item dropdown {{ "active" if 'casual' in path }}">
+            <a class="nav-link dropdown-toggle" href="/casual" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Casual Discussion{% if 'casual' in path %}<span class="sr-only">(current)</span>{% endif %}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for topic in topics %}
+              <a class="dropdown-item" href="/casual?t={{topic}}">{{topic}}</a>
+              {% endfor %}
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/casual">All</a>
+            </div>
           </li>
         </ul>
         {% block button %}{% endblock %}
@@ -40,7 +49,7 @@
     <br>
     <footer class="mt-auto py-3" style="background-color: #f5f5f5; text-align: center;">
       <div class="container">
-        <span class="text-muted"><a href="">Terms of Service</a>	● <a href="">Privacy Policy</a>	● <a href="">About Us</a>	● <a href="">Contact</a>	● © Team 1 2020</span>
+        <span class="text-muted"><a href="/about">About Us</a>	● <a href="">Contact</a>	● © Team 1 2020</span>
       </div>
     </footer>
     {% endblock %}

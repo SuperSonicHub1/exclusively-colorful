@@ -2,6 +2,16 @@
 
 <form method="POST" action="/casual/render" enctype='multipart/form-data'>
 
+  <div class="form-group">
+    <label for="topic">Topic</label>
+    <select class="form-control" name="topic" required>
+      {% for topic in topics %}
+      <option value="{{topic}}">{{topic}}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+
 	<div class="form-group">
 		<label for="title">Title</label>
     <input type="text" class="form-control" name="title" required>
@@ -17,7 +27,7 @@
     <textarea class="form-control" name="description" required></textarea>
   </div>
 
-   <div class="form-group">
+  <div class="form-group">
      <label for="school">School</label>
      <select class="form-control" name="school">
        <option value="None" selected>None</option>

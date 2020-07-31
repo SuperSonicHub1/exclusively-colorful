@@ -1,7 +1,7 @@
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from model import validate_image, schools
+from model import validate_image, schools, topics
 from datetime import datetime
 import os
 import base64
@@ -16,55 +16,68 @@ mongo = PyMongo(app)
 # Index
 @app.route('/')
 def index():
-  return render_template('index.html', path=request.path)
+  return render_template('index.html', path=request.path, topics=topics())
 
+# About Us
+@app.route('/about')
+def about():
+  return render_template('about.html')
 
 # Activism
 @app.route('/activism')
 def activism():
-  return render_template('activism/index.html', path=request.path, posts=mongo.db.activism.find({}))
+  return render_template('activism/index.html', path=request.path, posts=mongo.db.activism.find({}), topics=topics())
 
 @app.route('/activism/create')
 def createActivism():
-  return render_template('activism/create.html',schools=schools())
+  return render_template('activism/create.html', path=request.path, schools=schools(), topics=topics())
 
 @app.route('/activism/post/<objectID>')
 def postActivism(objectID):
-  return render_template('activism/post.html', post=mongo.db.activism.find_one_or_404({'_id': ObjectId(objectID)}))
+  return render_template('activism/post.html', path=request.path, post=mongo.db.activism.find_one_or_404({'_id': ObjectId(objectID)}), topics=topics())
 
 @app.route('/activism/render', methods=["POST"])
 def renderActivism():
+  image = ''
   uploaded_file = request.files['image']
   if uploaded_file.filename != '' and \
     os.path.splitext(uploaded_file.filename)[1] not in ALLOWED_EXTENSIONS and \
     os.path.splitext(uploaded_file.filename)[1] == validate_image(uploaded_file.stream):
     image = base64.b64encode(uploaded_file.read()).decode('ascii', 'strict')
+    image_format=validate_image(uploaded_file.stream)
   else:
     image = ''
+    image_format=''
 
   posts = mongo.db.activism
   post = posts.insert_one({
-      'title':request.form['title'],
-      'description': request.form['description'],
-      'image': image,
-      'school': request.form['school'],
-      'time': datetime.now()
+    'title':request.form['title'],
+    'description': request.form['description'],
+    'image': image,
+    'image_format': image_format,
+    'school': request.form['school'],
+    'time': datetime.now()
   })
   return redirect(url_for('postActivism', objectID=post.inserted_id))
 
 # Casual
 @app.route('/casual')
 def casual():
-  return render_template('casual/index.html', path=request.path, posts=mongo.db.casual.find({}))
+  try:
+    if request.args['t']:
+      return render_template('casual/index.html', path=request.path, posts=mongo.db.casual.find({'topic': request.args['t']}), topics=topics(), topic=request.args['t'])
+  except:
+    pass
+  return render_template('casual/index.html', path=request.path, posts=mongo.db.casual.find({}), topics=topics(), topic='')
 
 
 @app.route('/casual/create')
 def createCasual():
-  return render_template('casual/create.html',schools=schools())
+  return render_template('casual/create.html', path=request.path, schools=schools(), topics=topics())
 
 @app.route('/casual/post/<objectID>')
 def postCasual(objectID):
-  return render_template('casual/post.html', post=mongo.db.casual.find_one_or_404({'_id': ObjectId(objectID)}))
+  return render_template('casual/post.html', post=mongo.db.casual.find_one_or_404({'_id': ObjectId(objectID)}), path=request.path, topics=topics())
 
 @app.route('/casual/render', methods=["POST"])
 def renderCasual():
@@ -73,16 +86,20 @@ def renderCasual():
     os.path.splitext(uploaded_file.filename)[1] not in ALLOWED_EXTENSIONS and \
     os.path.splitext(uploaded_file.filename)[1] == validate_image(uploaded_file.stream):
     image = base64.b64encode(uploaded_file.read()).decode('ascii', 'strict')
+    image_format=validate_image(uploaded_file.stream)
   else:
     image = ''
+    image_format=''
 
   posts = mongo.db.casual
   post = posts.insert_one({
-      'title':request.form['title'],
-      'description': request.form['description'],
-      'image': image,
-      'school': request.form['school'],
-      'time': datetime.now()
+    'title':request.form['title'],
+    'description': request.form['description'],
+    'image': image,
+    'image_format': image_format,
+    'school': request.form['school'],
+    'topic': request.form['topic'],
+    'time': datetime.now()
   })
   return redirect(url_for('postCasual', objectID=post.inserted_id))
 
