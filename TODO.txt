@@ -5,15 +5,15 @@
   - ~~Different topics to talk~~
   - ~~Each page is a separate topic for sake of pagination~~
 - ~~Create sitemap for presentation~~
+- ~~Only have create drop-down display boarding schools!~~
 
 [Extras]
 - ~~Show JPEGs~~
 - Actually do pagination!
-- About Us page
-- ~~Only have create drop-down display boarding schools!~~
+- ~~About Us page~~
 - Better ways to organize posts
   - Search! [pretty difficult]
   - School
   - Popularity (most views in an hour [learn to record page views]) 
   - Latest (default)
-- Create session so that a user doesn't have to declare their school multiple times
+- ~~Create session so that a user doesn't have to declare their school multiple times~~

@@ -1,27 +1,52 @@
 {% extends 'base.html' %}
-{% block title %}Index{% endblock %}
+{% block title %}Homepage{% endblock %}
 {% block content %}
-<h1>Exclusively Colorful</h1>
-      <h3>Made by Barbara Odae, Emmanuel Olusheki, Kyle Williams, Tomilola Adegoke</h3>
-      <div>
-        <p>Problem: Black and Latinx NYC students attending private boarding schools want access to a large and diverse network of POC peers that promotes inclusivity and intersectionality where they can connect and relate to each other in a casual setting during their time in high school</p>
-      </div>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+    p, li {
+        font-family: 'Comfortaa', cursive;
+        line-height: 2;
+        font-size: x-large
+    }
+
+    .logo1 {
+        color: #38b6ff
+    }
+    .logo2 {
+        background: -webkit-linear-gradient(left, red, orange , yellow, green, cyan, blue, violet); 
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent;
+    }
+    #header {
+        border: 10px solid;
+        border-image-source: -webkit-linear-gradient(left, red, orange , yellow, green, cyan, blue, violet);
+        border-image-slice: 1;
+        background-color: white;
+    }
+</style>
+
+<div class="text-center">
+        <div id="header">
+            <h1><b class="logo1">Exclusively</b> <i class="logo2">Colorful</i></h1>
+            <h4>Where Students of Color can Express Their True Colors</h4>
+        </div>
+        <br>
+        <h1 class="display-4">THE PROBLEM</h1>
+        <p> Black and Latinx NYC students attending private boarding schools want access to a large and diverse network of POC peers that promotes inclusivity and intersectionality where they can connect and relate to each other in a casual setting during their time in high school.</p>
+        
+        <h1 class="display-4">THE SOLUTION</h1>
         <p>
-          This idea was born out of inspiration for the Black at instagram accounts and as a group project. Exclusively Colorful is designed to be a platform that will provide a safe space for black and brown NYC students attending boarding schools through the use of:
+          <b class="logo1">Exclusively</b> <i class="logo2">Colorful</i> is designed to be a platform that will provide a safe space for black and brown NYC students attending boarding schools through the use of:
         </p>
         <ul class="list-unstyled">
-          <ul>
             <li>Forums with a vast selection of topics that students can have casual conversations and unwind over</li>
             <li>A system where students can share their difficult racially targeted experiences in their boarding schools</li>
             <li>A page of resources for users to reference for whatever they deem fit</li>
-          </ul>
         </ul>
-        <figure class="figure">
-          <img src="static/activism.png" class="figure-img img-fluid rounded" alt="activism">
-          <figcaption class="figure-caption">A regular day on our homepage!</figcaption>
-        </figure>
         <br>
         <br>
-        <button type="button" onclick="window.location.href='http://team-1-v2--supersonichub1.repl.co/activism';" value="activism_website" class="btn btn-outline-dark">Join Us Today!</button>
+        <button type="button" onclick="window.location.href='http://team-1-v2--supersonichub1.repl.co/activism';" value="activism_website" class="btn btn-outline-dark btn-lg">Start Chatting!</button>
+</div>
 
 {% endblock %}

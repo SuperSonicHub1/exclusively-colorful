@@ -30,10 +30,10 @@
   <div class="form-group">
      <label for="school">School</label>
      <select class="form-control" name="school">
-       <option value="None" selected>None</option>
+       <option value="None">None</option>
        <option value="Other">Other</option>  
        {% for name in schools.boarding %}
-       <option value="{{name}}">{{name}}</option>
+       <option value="{{name}}" {{'selected' if school == name}}>{{name}}</option>
        {% endfor %}
      </select>
   </div>
