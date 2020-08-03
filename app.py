@@ -5,8 +5,13 @@ from model import validate_image, schools, topics
 from datetime import datetime
 import os
 import base64
-
+import logging
+import sys
 app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
+
+
 ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg']
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 2
 app.config['MONGO_DBNAME'] = 'Team-1'
