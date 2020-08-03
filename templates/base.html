@@ -24,9 +24,6 @@
           <li class="nav-item {{ "active" if path=="/" }}">
             <a class="nav-link" href="/">Home{% if path=="/" %}<span class="sr-only">(current)</span>{% endif %}</a>
           </li>
-          <li class="nav-item {{ "active" if 'activism' in path }}">
-            <a class="nav-link" href="/activism">Activism{% if 'activism' in path %}<span class="sr-only">(current)</span>{% endif %}</a>
-          </li>
           <li class="nav-item dropdown {{ "active" if 'casual' in path }}">
             <a class="nav-link dropdown-toggle" href="/casual" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Casual Discussion{% if 'casual' in path %}<span class="sr-only">(current)</span>{% endif %}
@@ -38,6 +35,9 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/casual">All</a>
             </div>
+          </li>
+          <li class="nav-item {{ "active" if 'activism' in path }}">
+            <a class="nav-link" href="/activism">Confessionals{% if 'activism' in path %}<span class="sr-only">(current)</span>{% endif %}</a>
           </li>
         </ul>
         {% block button %}{% endblock %}
