@@ -39,7 +39,9 @@
           <li class="nav-item {{ "active" if 'activism' in path }}">
             <a class="nav-link" href="/activism">Confessionals{% if 'activism' in path %}<span class="sr-only">(current)</span>{% endif %}</a>
           </li>
-          <li class="nav-item {{"active" if ''}}""
+          <li class="nav-item {{ "active" if 'resources' in path }}">
+            <a class="nav-link" href="/resources">Resources{% if 'resources' in path %}<span class="sr-only">(current)</span>{% endif %}</a>
+          </li>
         </ul>
         {% block button %}{% endblock %}
       </div>

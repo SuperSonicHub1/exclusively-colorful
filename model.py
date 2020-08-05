@@ -16,3 +16,7 @@ def schools():
 def topics():
   with open("utils/topics.json")as f:
     return json.load(f)
+
+def resources():
+  with open("utils/resources.json")as f:
+    return json.load(f)

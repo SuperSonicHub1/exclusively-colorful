@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Resources{% endblock %}
+{% block content %}
+{% for item in resources %}
+<div class="row">
+    <div class="col">
+        <small><a href="{{item['link']}}" class="text-muted">{{item['link']}}</a></small>
+        <h3>{{item['title']}}</h3>
+        <p>{{item['summary'][:200] + '...' if item['summary']|length > 200 else item['summary']}}</p>
+        <small class="text-muted">{{item['author']}} - {{item['date']}}</small>
+    </div>
+    <div class="col-sm">
+        <img src="{{item['image']['link']}}" alt="{{item['image']['alt']}}" class="img-thumbnail float-right" style="height: 50%">
+    </div>
+</div>
+<hr>
+{% endfor %}
+{% endblock %}

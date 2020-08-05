@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from model import validate_image, schools, topics
+from model import validate_image, schools, topics, resources
 from datetime import datetime
 import os
 import base64
@@ -32,6 +32,14 @@ def index():
 def about():
     return render_template('about.html')
 
+# Resources
+@app.route('/resources')
+def flashresources():
+  return render_template(
+    'resources.html',
+     resources=resources(),
+      path=request.path,
+       topics=topics())
 
 # Activism
 @app.route('/activism')
