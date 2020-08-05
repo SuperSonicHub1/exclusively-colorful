@@ -1,14 +1,19 @@
 {% extends "casual/base.html" %}
 {% block title %}{{post.title}}{% endblock %}
 {% block content %}
-<div class="text-center">
+<div class="row">
     {% if post.image %}
-    <img src="data:image/{{post.image_format}};base64,{{post.image}}" class="img-thumbnail" style="max-height=50%" alt="Post image">
+    <div class="col-sm">
+       <img src="data:image/{{post.image_format}};base64,{{post.image}}" class="img-thumbnail" style="max-height=50%" alt="Post image">
+    </div>
     {% endif %}
-    <h1>{{post.title}}</h1>
-    <p>{{post.description}}</p>
-    <p class="text-muted">
-        <i class="fa fa-school mr-sm-2" aria-hidden="true"></i>{{post.school}} | <i class="fa fa-clock mr-sm-2" aria-hidden="true"></i>{{post.time.strftime("%a %b %d, %Y, %H:%M UTC")}} | <i class="far fa-clipboard mr-sm-2"></i>{{post.topic}}
-    </p>
+    <div class="col">
+        <h1>{{post.title}}</h1>
+        <p>{{post.description}}</p>
+        <p>{{post.description}}</p>
+        <small class="text-muted">
+            <i class="fa fa-school mr-sm-2" aria-hidden="true"></i>{{post.school}} | <i class="fa fa-clock mr-sm-2" aria-hidden="true"></i>{{post.time.strftime("%a %b %d, %Y, %H:%M UTC")}} | <i class="far fa-clipboard mr-sm-2"></i>{{post.topic}}
+        </small>
+    </div>
 </div>
 {% endblock %}

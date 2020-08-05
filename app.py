@@ -76,7 +76,8 @@ def postActivism(objectID):
 def renderActivism():
     image = ''
     uploaded_file = request.files.get('image')
-    if uploaded_file.filename != '' and \
+    if uploaded_file and \
+      uploaded_file.filename != '' and \
       os.path.splitext(uploaded_file.filename)[1] not in ALLOWED_EXTENSIONS and \
       os.path.splitext(uploaded_file.filename)[1] == validate_image(uploaded_file.stream):
         image = base64.b64encode(uploaded_file.read()).decode(
@@ -144,8 +145,9 @@ def postCasual(objectID):
 
 @app.route('/casual/render', methods=["POST"])
 def renderCasual():
-    uploaded_file = request.files['image']
-    if uploaded_file.filename != '' and \
+    uploaded_file = request.files.get('image')
+    if uploaded_file and \
+      uploaded_file.filename != '' and \
       os.path.splitext(uploaded_file.filename)[1] not in ALLOWED_EXTENSIONS and \
       os.path.splitext(uploaded_file.filename)[1] == validate_image(uploaded_file.stream):
         image = base64.b64encode(uploaded_file.read()).decode(
@@ -157,12 +159,12 @@ def renderCasual():
 
     posts = mongo.db.casual
     post = posts.insert_one({
-        'title': request.form['title'],
-        'description': request.form['description'],
+        'title': request.form.get('title'),
+        'description': request.form.get('description'),
         'image': image,
         'image_format': image_format,
-        'school': request.form['school'],
-        'topic': request.form['topic'],
+        'school': request.form.get('school'),
+        'topic': request.form.get('topic'),
         'time': datetime.now()
     })
     response = make_response(
