@@ -1,6 +1,12 @@
 {% extends "casual/base.html" %}
 {% block title %}{{post.title}}{% endblock %}
 {% block content %}
+<style>
+    #content {
+        font-size: x-large;
+    }
+</style>
+
 <div class="row">
     {% if post.image %}
     <div class="col-sm">
@@ -9,7 +15,6 @@
     {% endif %}
     <div class="col">
         <h1>{{post.title}}</h1>
-        <p>{{post.description}}</p>
         <p>{{post.description}}</p>
         <small class="text-muted">
             <i class="fa fa-school mr-sm-2" aria-hidden="true"></i>{{post.school}} | <i class="fa fa-clock mr-sm-2" aria-hidden="true"></i>{{post.time.strftime("%a %b %d, %Y, %H:%M UTC")}} | <i class="far fa-clipboard mr-sm-2"></i>{{post.topic}}
